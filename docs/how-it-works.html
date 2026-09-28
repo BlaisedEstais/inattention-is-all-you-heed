@@ -4,49 +4,46 @@
 <title>How it works</title>
 <style>
   :root {
-    --ink: #10151c; --muted: #667281; --line: #e3e7ec; --bg: #f7f8fa; --card: #ffffff;
+    --ink: #10151c; --muted: #6b7684; --line: #e3e7ec; --bg: #f7f8fa; --card: #ffffff;
     --ok: #1f9d55; --warn: #b7791f; --stop: #c5341f;
     --ok-bg: #eaf7ef; --warn-bg: #fdf4e3; --stop-bg: #fdecea;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    width: 1120px; padding: 40px 44px 34px; background: var(--bg); color: var(--ink);
-    font: 15px/1.45 -apple-system, "SF Pro Text", "Segoe UI", Inter, system-ui, sans-serif;
+    width: 760px; padding: 34px 36px 30px; background: var(--bg); color: var(--ink);
+    font: 15px/1.5 -apple-system, "SF Pro Text", "Segoe UI", Inter, system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
-  .ask { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; }
-  .ask .who { font-size: 13px; color: var(--muted); font-weight: 600; letter-spacing: .02em; }
+  .ask { display: flex; align-items: center; gap: 11px; margin-bottom: 8px; }
+  .who { font-size: 11px; font-weight: 700; letter-spacing: .08em; color: var(--muted); }
   .bubble {
-    background: var(--ink); color: #fff; padding: 11px 18px; border-radius: 16px 16px 16px 4px;
-    font-size: 16px; font-weight: 500;
+    background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 15px 15px 15px 4px;
+    font-size: 15.5px; font-weight: 500;
   }
-  .row {
-    display: grid; grid-template-columns: 300px 1fr 150px; gap: 18px; align-items: center;
-    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
-    padding: 16px 18px; margin-bottom: 12px;
+  .rail { border-left: 2px solid var(--line); margin-left: 7px; padding: 14px 0 2px 24px; }
+  .step { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 13px;
+          padding: 14px 16px 13px; margin-bottom: 12px; }
+  .step::before {
+    content: ""; position: absolute; left: -31px; top: 20px; width: 11px; height: 11px;
+    border-radius: 50%; background: var(--line); box-shadow: 0 0 0 4px var(--bg);
   }
-  .cmd { font: 13.5px/1.35 ui-monospace, "SF Mono", Menlo, monospace; word-break: break-all; }
-  .sub { font-size: 12px; color: var(--muted); margin-top: 5px; }
-  .talk { display: flex; flex-direction: column; gap: 7px; }
+  .step.ok::before { background: var(--ok); }
+  .step.warn::before { background: var(--warn); }
+  .step.stop::before { background: var(--stop); }
+  .head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; }
+  .cmd { font: 13.5px/1.35 ui-monospace, "SF Mono", Menlo, monospace; }
+  .badge { flex: none; font-size: 11.5px; font-weight: 700; padding: 4px 9px; border-radius: 8px; white-space: nowrap; }
+  .b-ok { background: var(--ok-bg); color: var(--ok); }
+  .b-warn { background: var(--warn-bg); color: var(--warn); }
+  .b-stop { background: var(--stop-bg); color: var(--stop); }
+  .sub { font-size: 12.5px; color: var(--muted); margin-top: 4px; }
+  .talk { margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
   .line { display: flex; gap: 9px; align-items: baseline; font-size: 14px; }
-  .tag {
-    flex: none; font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
-    color: var(--muted); width: 54px;
-  }
+  .tag { flex: none; width: 48px; font-size: 10.5px; font-weight: 700; letter-spacing: .06em; color: var(--muted); }
   .guard { font-weight: 600; }
-  .verdict {
-    text-align: center; border-radius: 11px; padding: 9px 10px; font-size: 13px; font-weight: 700;
-  }
-  .v-ok { background: var(--ok-bg); color: var(--ok); }
-  .v-warn { background: var(--warn-bg); color: var(--warn); }
-  .v-stop { background: var(--stop-bg); color: var(--stop); }
-  .dot { font-size: 15px; }
-  .foot {
-    display: flex; justify-content: space-between; align-items: baseline;
-    margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line);
-  }
+  .foot { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
   .foot b { font-size: 15px; }
-  .foot span { font-size: 13px; color: var(--muted); }
+  .foot div { font-size: 12.5px; color: var(--muted); margin-top: 3px; }
 </style>
 <body>
   <div class="ask">
@@ -54,44 +51,46 @@
     <div class="bubble">can you clean this up real quick?</div>
   </div>
 
-  <div class="row">
-    <div>
-      <div class="cmd">rm -rf ./build</div>
-      <div class="sub">regenerable, nothing unique inside</div>
+  <div class="rail">
+    <div class="step ok">
+      <div class="head">
+        <div class="cmd">rm -rf ./build</div>
+        <div class="badge b-ok">✅ runs</div>
+      </div>
+      <div class="sub">regenerable — nothing unique inside</div>
+      <div class="talk">
+        <div class="line"><span class="tag">GUARD</span><span style="color:var(--muted)">nothing to ask. this one is free.</span></div>
+      </div>
     </div>
-    <div class="talk">
-      <div class="line"><span class="tag">guard</span><span style="color:var(--muted)">nothing to ask — this one is free.</span></div>
-    </div>
-    <div class="verdict v-ok"><span class="dot">✅</span> runs</div>
-  </div>
 
-  <div class="row">
-    <div>
-      <div class="cmd">gh repo delete acme/old-demo</div>
+    <div class="step warn">
+      <div class="head">
+        <div class="cmd">gh repo delete acme/old-demo</div>
+        <div class="badge b-warn">⚠️ agent confirms, runs</div>
+      </div>
       <div class="sub">a whole repository</div>
+      <div class="talk">
+        <div class="line"><span class="tag">GUARD</span><span class="guard">Sure? Deleting a repo. GitHub restores it for 90 days.</span></div>
+        <div class="line"><span class="tag">AGENT</span><span>Sure: you asked for it, nothing unique in it, and it comes back.</span></div>
+      </div>
     </div>
-    <div class="talk">
-      <div class="line"><span class="tag">guard</span><span class="guard">Sure? Deleting a repo. GitHub restores it for 90 days.</span></div>
-      <div class="line"><span class="tag">agent</span><span>Sure: you asked for it, nothing unique in it, and it comes back.</span></div>
-    </div>
-    <div class="verdict v-warn"><span class="dot">⚠️</span> agent<br>confirms, runs</div>
-  </div>
 
-  <div class="row">
-    <div>
-      <div class="cmd">DELETE /drive/v3/files/{id}</div>
+    <div class="step stop">
+      <div class="head">
+        <div class="cmd">DELETE /drive/v3/files/{id}</div>
+        <div class="badge b-stop">🛑 stopped</div>
+      </div>
       <div class="sub">looks like “move to trash”. it isn’t.</div>
+      <div class="talk">
+        <div class="line"><span class="tag">GUARD</span><span class="guard">Sure? This call skips the trash. Nothing comes back.</span></div>
+        <div class="line"><span class="tag">AGENT</span><span>Ah — let me re-check the docs and use the trash endpoint instead.</span></div>
+      </div>
     </div>
-    <div class="talk">
-      <div class="line"><span class="tag">guard</span><span class="guard">Sure? This call skips the trash. Nothing comes back.</span></div>
-      <div class="line"><span class="tag">agent</span><span>Ah — let me re-check the docs and use the trash endpoint instead.</span></div>
-    </div>
-    <div class="verdict v-stop"><span class="dot">🛑</span> stopped<br>before damage</div>
   </div>
 
   <div class="foot">
     <b>Reversible → out of your way. Irreversible → you decide.</b>
-    <span>inattention-is-all-you-heed — a pre-tool-call hook for Claude Code, Codex, OpenClaw and friends</span>
+    <div>inattention-is-all-you-heed — a pre-tool-call hook for Claude Code, Codex, OpenClaw and friends</div>
   </div>
 </body>
 </html>
