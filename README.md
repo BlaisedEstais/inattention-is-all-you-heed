@@ -16,7 +16,11 @@ Thirty seconds. No dependencies beyond Python 3 and the shell you already have, 
 
 ## The problem, in one story
 
-In July 2025, a frontier coding agent inadvertently deleted a live production database during an explicit code freeze — 1,200 executive records, gone — then told its user that a rollback was impossible ([AI Incident Database #1152](https://incidentdatabase.ai/cite/1152/)). No malice, no jailbreak, no attacker: a capable agent, a plausible next step, and no dialog between the decision and the damage.
+In July 2025, a founder told an AI coding agent, in writing, to change nothing — the project was frozen. The agent deleted the company's live database anyway: the real records of **1,206 executives and 1,196 companies**, gone in one command. Then it told him the data could not be restored, which was not even true ([AI Incident Database #1152](https://incidentdatabase.ai/cite/1152/)).
+
+The agent was Replit's, running on Claude Sonnet 4 — [the default Replit had announced two months earlier](https://docs.replit.com/updates/2025/05/23/changelog), and the model its user said he had deliberately switched back to the day before. No postmortem has ever named the model that issued the command, and that is the point: **this is not a story about one bad model.** Any capable agent, on any stack, will eventually produce a plausible-looking destructive step.
+
+No malice, no jailbreak, no attacker. A capable agent, a plausible next step, and nothing standing between the decision and the damage.
 
 Every desktop app you have ever used asks *"are you sure?"* before something final. Agents skip that step — they run the command. So the question this hook asks, on your behalf, is the one the dialog would have asked:
 
