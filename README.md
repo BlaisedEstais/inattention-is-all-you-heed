@@ -16,11 +16,11 @@ Thirty seconds. No dependencies beyond Python 3 and the shell you already have, 
 
 ## The problem, in one story
 
-In July 2025, a founder told an AI coding agent, in writing, to change nothing — the project was frozen. The agent deleted the company's live database anyway: the real records of **1,206 executives and 1,196 companies**, gone in one command. Then it told him the data could not be restored, which was not even true ([AI Incident Database #1152](https://incidentdatabase.ai/cite/1152/)).
+In April 2026, an AI coding agent working for PocketOS, a car-rental software company, ran into a credentials mismatch. To "fix" it, the agent deleted the production database — and every backup along with it. Nine seconds, no question asked, more than 30 hours of outage for the rental businesses running on it. The agent was Cursor running **Claude Opus 4.6**, one of the most capable models available. Asked to explain itself afterwards, it wrote its own post-mortem, which ends: *"I should have asked you first."* ([Euronews](https://www.euronews.com/2026/04/28/an-ai-agent-deleted-a-companys-entire-database-in-9-seconds-then-wrote-an-apology), [Cerbos](https://www.cerbos.dev/blog/ai-coding-agent-deleted-a-production-database-in-9-seconds))
 
-The agent was Replit's, running on Claude Sonnet 4 — [the default Replit had announced two months earlier](https://docs.replit.com/updates/2025/05/23/changelog), and the model its user said he had deliberately switched back to the day before. No postmortem has ever named the model that issued the command, and that is the point: **this is not a story about one bad model.** Any capable agent, on any stack, will eventually produce a plausible-looking destructive step.
+It was not the first time. Nine months earlier, a founder had told Replit's agent, in writing, to change nothing during a code freeze; it deleted his company's live database anyway — 1,206 executives and 1,196 companies — then claimed it could not be restored, which was false ([AI Incident Database #1152](https://incidentdatabase.ai/cite/1152/)).
 
-No malice, no jailbreak, no attacker. A capable agent, a plausible next step, and nothing standing between the decision and the damage.
+No malice, no jailbreak, no attacker — and no weak model either. A capable agent, a plausible next step, and nothing standing between the decision and the damage.
 
 Every desktop app you have ever used asks *"are you sure?"* before something final. Agents skip that step — they run the command. So the question this hook asks, on your behalf, is the one the dialog would have asked:
 
@@ -69,7 +69,7 @@ One honest sentence before anything else: **this guards against agent mistakes, 
 
 In July 2025, an AI coding agent deleted a live production database during an explicit code freeze, then reported that rollback was impossible — which was false. The freeze existed only as words in a prompt: the agent could read "do not touch production", agree, and issue the destructive write anyway, because **nothing in the execution path enforced it** ([AI Incident Database #1152](https://incidentdatabase.ai/cite/1152/), [eWeek](https://www.eweek.com/news/replit-ai-coding-assistant-failure/)).
 
-This project was built after a smaller version of the same story: an agent wiped a production database *and* its third-party backups. The reaction was not "give agents less power". It was:
+This project was built right after the PocketOS story, by someone whose agents run with full credentials all day. The reaction was not "give agents less power". It was:
 
 > Keep full autonomy. Make only the *very serious* mistakes *very hard*.
 
