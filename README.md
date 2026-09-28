@@ -1,7 +1,7 @@
 # inattention-is-all-you-heed
-## *The "*⚠️* Are you sure?" popup for AI agents.*
+### ⚠️ *The "Are you sure?" popup for AI agents*
 
-**All app have *"Are you sure?"* popups for humans, to confirm before irreversible changes – like permanently deleting something or confirm sending a message. AI agents don't get that popup — they just run the CLI or MCP command. This tool brings the missing popup, so that AI agent don't do errors that can't be undone.**
+**Every app has an *"Are you sure?"* popup for humans, to confirm before something irreversible — permanently deleting a file, sending a message. AI agents never get that popup: they just run the CLI or MCP call. This brings the popup back, so an agent cannot make the one mistake you can't undo.**
 
 ![A user asks an agent to clean things up. Three commands follow: deleting a build folder runs untouched; deleting a repository makes the agent confirm in writing and proceed; an API call that permanently deletes a file, bypassing the trash, is stopped and the agent goes back to the documentation.](docs/how-it-works.png)
 
@@ -16,7 +16,7 @@ Thirty seconds. No dependencies beyond Python 3 and the shell you already have, 
 
 ## The problem, in one story
 
-In July 2025, a frontier AI agent (Opus 4.7!) inadvertently permanently deleted a live production database, then told its user that a rollback was impossible ([AI Incident Database #1152](https://incidentdatabase.ai/cite/1152/)). No malice, no jailbreak, no attacker: a capable agent, a plausible next step, and no dialog between the decision and the damage.
+In July 2025, a frontier coding agent inadvertently deleted a live production database during an explicit code freeze — 1,200 executive records, gone — then told its user that a rollback was impossible ([AI Incident Database #1152](https://incidentdatabase.ai/cite/1152/)). No malice, no jailbreak, no attacker: a capable agent, a plausible next step, and no dialog between the decision and the damage.
 
 Every desktop app you have ever used asks *"are you sure?"* before something final. Agents skip that step — they run the command. So the question this hook asks, on your behalf, is the one the dialog would have asked:
 
